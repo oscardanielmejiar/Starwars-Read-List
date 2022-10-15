@@ -4,7 +4,7 @@ import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 import propTypes from "prop-types";
 
-export const CardItem = () => {
+export const CardItem = (props) => {
   const { store, actions } = useContext(Context);
 
      return (
@@ -12,14 +12,14 @@ export const CardItem = () => {
         <div className="card h-100">
           <img src={rigoImageUrl} className="card-img-top" alt="..." />
           <div className="card-body">
-            <h5 className="card-title"></h5>
+            <h5 className="card-title">{props.title || "Title"}</h5>
             <p className="card-text">
-              Gender: <br />
-              Hair Color: <br />
-              Eye Color:
+              {props.item1 || ""}<br />
+              {props.item2 || ""}<br />
+              {props.item3 || ""}
             </p>
             <a href="#" className="btn btn-primary">
-              Lear More!
+              Learn More!
             </a>
           </div>
         </div>
