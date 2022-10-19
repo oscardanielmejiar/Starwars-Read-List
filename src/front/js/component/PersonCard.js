@@ -1,28 +1,29 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-import rigoImageUrl from "../../img/rigo-baby.jpg";
+import peoplePic from "../../img/people-pic.jpg";
 import "../../styles/home.css";
 import propTypes from "prop-types";
 
-export const CardItem = (props) => {
+export const PersonCard = (props) => {
   const { store, actions } = useContext(Context);
 
      return (
-      <div className="col">
-        <div className="card h-100">
-          <img src={rigoImageUrl} className="card-img-top" alt="..." />
+      
+        <div className="card">
+          <img src={peoplePic} className="card-img-top"/>
           <div className="card-body">
             <h5 className="card-title">{props.title || "Title"}</h5>
             <p className="card-text">
-              {props.item1 || ""}<br />
-              {props.item2 || ""}<br />
-              {props.item3 || ""}
+            Gender: {props.gender || "Title"}<br />
+            Hair Color: {props.hairColor }<br />
+            Eye Color: {props.eyeColor}<br />       
+            Home World: {props.homeWorld}
             </p>
             <a href="#" className="btn btn-primary">
               Learn More!
             </a>
           </div>
         </div>
-      </div>
+    
     );
   };
