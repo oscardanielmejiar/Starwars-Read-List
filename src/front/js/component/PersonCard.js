@@ -27,3 +27,10 @@ export const PersonCard = (props) => {
     
     );
   };
+
+  PersonCard.propTypes={
+    gender: propTypes.string,
+    hairColor: propTypes.string,
+    eyeColor: propTypes.string,
+    homeWorld: propTypes.string
+  }
