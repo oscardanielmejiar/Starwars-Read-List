@@ -18,22 +18,6 @@ class User(db.Model):
             # do not serialize the password, its a security breach
         }
 
-import os
-import sys
-from sqlalchemy import Column, ForeignKey, Integer, String
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship
-from sqlalchemy import create_engine
-from eralchemy import render_er
-
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-db = SQLAlchemy()
-#python src/models.py to create
-# a new diagram showing changes
-
-Base = declarative_base()
-
 class Person(db.Model):
     __tablename__ = 'person'
     id = db.Column(db.Integer, primary_key=True)
@@ -44,6 +28,19 @@ class Person(db.Model):
     birth_year = db.Column(db.String(250))
     gender = db.Column(db.String(250))
 
+    def serialize(self):
+        return{
+            "name": self.person_name,
+            "eye_color": self.eye_color,
+            "hair_color": self.hair_color,
+            "skin_color": self.skin_color,
+            "birth_year": self.birth_year,
+            "gender": self.gender,
+        }
+
+    def deserialize(data={}):
+        return Person(**data) 
+
 class Planet(db.Model):
     __tablename__ = 'planets'
     id = db.Column(db.Integer, primary_key=True)
@@ -53,12 +50,22 @@ class Planet(db.Model):
     terrain = db.Column(db.String(250))
     population = db.Column(db.String(250))
     person_id = db.Column(db.Integer, db.ForeignKey('person.id'))
-    person = relationship(Person)
+    person = db.relationship(Person)
+
+    def serialize(self):
+        return{
+            "planet_name": self.planet_name,
+            "diameter": self.diameter,
+            "climate": self.climate,
+            "terrain": self.terrain,
+            "population": self.population,
+        }
+
+    def deserialize(data={}):
+        return Planet(**data) 
 
 class Vehicle(db.Model):
     __tablename__ = 'vehicle'
-    # Here we define columns for the table address.
-    # Notice that each column is also a normal Python instance attribute.
     id = db.Column(db.Integer, primary_key=True)
     vehicle_name = db.Column(db.String(250))
     model = db.Column(db.String(250))
@@ -66,11 +73,16 @@ class Vehicle(db.Model):
     passenger = db.Column(db.String(250))
     cost_in_credits = db.Column(db.String(250))
     vehicle_class = db.Column(db.String(250))
-    person_id = db.Column(db.Integer, db.ForeignKey('person.id'))
-    person = db.relationship(Person)
 
-    def to_dict(self):
-        return {}
+    def serialize(self):
+        return{
+            "vehicle_name": self.vehicle_name,
+            "model": self.model,
+            "manufacturer": self.manufacturer,
+            "passenger": self.passenger,
+            "cost_in_credits": self.cost_in_credits,
+            "vehicle_class": selfvehicle_class,
+        }
 
-## Draw from SQLAlchemy base
-render_er(db.Model, 'diagram.png')
+    def deserialize(data={}):
+        return Vehicle(**data)    

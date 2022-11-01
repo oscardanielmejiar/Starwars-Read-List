@@ -13,7 +13,7 @@ export const Characters = () => {
       <div className="row row-cols-1 row-cols-md-3 g-4">
       {store.people.map((person, index) => {
 						return (
-							<div className="col-sm-6" key={index}>
+							<div  key={index}>
                 <PersonCard title={person.name} gender={person.gender}	hairColor={person.hair_color}
 									eyeColor={person.eye_color} 	homeWorld={person.homeworld} 	index={index}
 									/>
